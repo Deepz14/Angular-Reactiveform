@@ -1,0 +1,56 @@
+<div class="container form-container p-5">
+    <form [formGroup]="userProfile" (ngSubmit)="onSubmit()" autocomplete="off">
+
+        <div class="mb-3">
+            <label for="nameInput" class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="user_name" id="nameInput">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="ageInput" class="form-label">Age</label>
+            <input type="number" class="form-control" formControlName="age" id="ageInput">
+        </div>
+
+
+        <div class="mb-3">
+            <label for="selectInput" class="form-label">Qualification</label>
+
+            <select class="form-select" formControlName="qualification" id="selectInput">
+                <option value="">Select</option>
+                <option *ngFor="let q of Qualifications" [ngValue]="q">{{ q }}</option>
+            </select>
+
+        </div>
+
+
+        <div class="mb-3">
+            <p>Gender</p>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="gender" id="radio1" value="Male">
+                <label class="form-check-label" for="radio1">Male</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="gender" id="radio2" value="Female">
+                <label class="form-check-label" for="radio2">Female</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="gender" id="radio3" value="Others">
+                <label class="form-check-label" for="radio3">Others</label>
+            </div>
+
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck">
+            <label class="form-check-label" for="exampleCheck">I agree the terms and conditions*</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-3">Submit</button><br>
+
+        <button type="button" (click)="onClear()" class="btn btn-warning">Reset</button>
+    </form>
+</div>
