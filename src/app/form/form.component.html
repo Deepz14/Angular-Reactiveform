@@ -3,23 +3,37 @@
         <div class="row g-3">
             <div class="col-12 mb-3">
                 <label for="nameInput" class="form-label">Name</label>
-                <input type="text" class="form-control" formControlName="user_name" id="nameInput" required>
+                <input type="text" class="form-control" formControlName="user_name" id="nameInput" [ngClass]="{ 'is-invalid' : submitted && f.user_name.errors }" required>
+                
+                <div class="invalid-feedback">
+                    Name is required.
+                </div>
+            
             </div>
             
             
             <div class="col-12 mb-3">
                 <label for="ageInput" class="form-label">Age</label>
-                <input type="number" class="form-control" formControlName="age" id="ageInput" required>
+                <input type="number" class="form-control" formControlName="age" id="ageInput" [ngClass]="{ 'is-invalid' : submitted && f.age.errors }"  required>
+
+                <div class="invalid-feedback">
+                    Age is required.
+                </div>
+
             </div>
             
             
             <div class="col-12 mb-3">
                 <label for="selectInput" class="form-label">Qualification</label>
             
-                <select class="form-select" formControlName="qualification" id="selectInput" required>
-                    <option value="">Select</option>
+                <select class="form-select" formControlName="qualification" id="selectInput" [ngClass]="{ 'is-invalid' : submitted && f.qualification.errors }" required>
+                    <option value="" disabled>Select</option>
                     <option *ngFor="let q of Qualifications" [ngValue]="q">{{ q }}</option>
                 </select>
+
+                <div class="invalid-feedback">
+                    Please Select a valid Qualification.
+                </div>
             
             </div>
 
@@ -27,54 +41,53 @@
                 <p>Gender</p>
             
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" formControlName="gender" id="radio1" value="Male">
+                    <input class="form-check-input" type="radio" formControlName="gender" id="radio1" value="Male" [ngClass]="{ 'is-invalid' : submitted && f.gender.errors}" required>
                     <label class="form-check-label" for="radio1">Male</label>
                 </div>
             
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" formControlName="gender" id="radio2" value="Female">
+                    <input class="form-check-input" type="radio" formControlName="gender" id="radio2" value="Female" [ngClass]="{'is-invalid' : submitted && f.gender.errors}" required>
                     <label class="form-check-label" for="radio2">Female</label>
                 </div>
             
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" formControlName="gender" id="radio3" value="Others">
+                    <input class="form-check-input" type="radio" formControlName="gender" id="radio3" value="Others" [ngClass]="{'is-invalid' : submitted && f.gender.errors}" required>
                     <label class="form-check-label" for="radio3">Others</label>
                 </div>
-            
+
+                <div class="invalid-feedback">
+                    Gender is Required.
+                </div>
             </div>
 
-            <!----------          Bootstrap validation     ----------->
 
             <div class="col-4">
                 <label for="inputCity">City</label>
 
-                <input type="text" class="form-control" [ngClass]="validate" formControlName="city" id="inputCity" required>
+                <input type="text" class="form-control" formControlName="city" id="inputCity" [ngClass]="{'is-invalid' : submitted && f.city.errors}" required>
                 <div class="invalid-feedback">
                     Please provide a valid city.
                 </div>
 
-                <div class="invalid-feedback">
-                    Please select a valid city.
-                </div>
             </div>
 
             <div class="col-4">
                 <label for="selectState" class="form-label">State</label>
 
-                <select class="form-select" [ngClass]="validate" formControlName="state" id="selectInput" required>
-                    <option value="">Choose...</option>
-                    <option *ngFor="let state of States" [ngValue]="state">{{ state }}</option>
+                <select class="form-select"  formControlName="state" id="selectInput" [ngClass]="{'is-invalid' : submitted && f.state.errors}" required>
+                    <option value="" disabled>Choose...</option>
+                    <option>....</option>
                 </select>
 
                 <div class="invalid-feedback">
-                    Please select a valid city.
+                    Please select a valid state.
                 </div>
 
             </div>
 
             <div class="col-4">
                 <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" [ngClass]="validate" formControlName="zip" id="inputZip" required>
+                <input type="text" class="form-control" formControlName="zip" id="inputZip" [ngClass]="{'is-invalid' : submitted && f.zip.errors}" required>
 
                 <div class="invalid-feedback">
                     Please provide a valid zip.
@@ -83,13 +96,13 @@
             </div>
 
             <div class="col-12 mb-3 form-check">
-                <input type="checkbox" class="form-check-input" [ngClass]="validate" formControlName="agree" id="exampleCheck" required>
+                <input type="checkbox" class="form-check-input" formControlName="agree" id="exampleCheck" [ngClass]="{ 'is-invalid' : submitted && f.agree.errors}" required>
                 <label class="form-check-label" for="exampleCheck">Agree to terms and conditions</label>
 
                 <div class="invalid-feedback">
                     You must agree before submitting.
                 </div>
-                
+
             </div>
 
             <div class="col-12">
