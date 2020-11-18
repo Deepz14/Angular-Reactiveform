@@ -12,27 +12,33 @@ export class FormComponent implements OnInit {
 
   submitted = false;
 
+  disable = true;
+
   validate = '';
 
-  Qualifications : string[] = ['Elementary', 'Primary', 'Advanced']
-
-  States : string[] = ['Usa','Canada','France']
-
+  userFields = {
+    user_name : 'deepak',
+    age : 21,
+    qualification : ['Elementary', 'Primary', 'Advanced'],
+    gender : 'Male',
+    city : 'Erode',
+    state : ['TN', 'Karnataka', 'Kerala'],
+    zip : 638003
+  }
    
 
   constructor() { 
   }
 
   ngOnInit(): void {
-    this.userProfile = new FormGroup({
-      user_name : new FormControl('', Validators.required),
-      age : new FormControl('', Validators.required),
-      qualification : new FormControl([null]),
-      gender : new FormControl('Male', Validators.required),
-      city : new FormControl('', Validators.required),
-      state : new FormControl([null]),
-      zip : new FormControl('', Validators.required),
-      agree : new FormControl('', Validators.required)
+      this.userProfile = new FormGroup({
+      user_name : new FormControl({value : this.userFields.user_name, disabled : this.disable}, Validators.required),
+      age : new FormControl({value : this.userFields.age, disabled : this.disable}, Validators.required),
+      qualification : new FormControl({value : this.userFields.qualification[1], disabled : this.disable}),
+      gender : new FormControl({value : this.userFields.gender, disabled : this.disable}, Validators.required),
+      city : new FormControl({value : this.userFields.city, disabled : this.disable}, Validators.required),
+      state : new FormControl({value : this.userFields.state[0], disabled : this.disable}),
+      zip : new FormControl({value : this.userFields.zip, disabled : this.disable}, Validators.required)
     })
   }
 
@@ -54,7 +60,34 @@ export class FormComponent implements OnInit {
 
   onClear(){
     this.submitted = false;
-    this.userProfile.reset()
+
+    this.disable = true;
+
+     this.userProfile.reset({
+      user_name : {value : this.userFields.user_name, disabled : this.disable},
+      age : {value : this.userFields.age, disabled : this.disable},
+      qualification : {value : this.userFields.qualification[1], disabled : this.disable},
+      gender : {value : this.userFields.gender, disabled : this.disable},
+      city : {value : this.userFields.city, disabled : this.disable},
+      state : {value : this.userFields.state[0], disabled : this.disable},
+      zip : {value : this.userFields.zip, disabled : this.disable},
+    })
+   
+  }
+
+  onEdit(){
+    this.disable = false;
+
+    this.userProfile.reset({
+      user_name : {value : this.userFields.user_name, disabled : this.disable},
+      age : {value : this.userFields.age, disabled : this.disable},
+      qualification : {value : this.userFields.qualification[1], disabled : this.disable},
+      gender : {value : this.userFields.gender, disabled : this.disable},
+      city : {value : this.userFields.city, disabled : this.disable},
+      state : {value : this.userFields.state[0], disabled : this.disable},
+      zip : {value : this.userFields.zip, disabled : this.disable},
+    })
+
   }
 
 }

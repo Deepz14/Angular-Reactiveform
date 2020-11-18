@@ -8,7 +8,6 @@
                 <div class="invalid-feedback">
                     Name is required.
                 </div>
-            
             </div>
             
             
@@ -27,8 +26,7 @@
                 <label for="selectInput" class="form-label">Qualification</label>
             
                 <select class="form-select" formControlName="qualification" id="selectInput" [ngClass]="{ 'is-invalid' : submitted && f.qualification.errors }" required>
-                    <option value="" disabled>Select</option>
-                    <option *ngFor="let q of Qualifications" [ngValue]="q">{{ q }}</option>
+                    <option *ngFor="let q of userFields.qualification"  [ngValue]="q">{{ q }}</option>
                 </select>
 
                 <div class="invalid-feedback">
@@ -75,8 +73,7 @@
                 <label for="selectState" class="form-label">State</label>
 
                 <select class="form-select"  formControlName="state" id="selectInput" [ngClass]="{'is-invalid' : submitted && f.state.errors}" required>
-                    <option value="" disabled>Choose...</option>
-                    <option>....</option>
+                    <option *ngFor="let state of userFields.state" [ngValue]="state">{{ state }}</option>
                 </select>
 
                 <div class="invalid-feedback">
@@ -95,7 +92,7 @@
 
             </div>
 
-            <div class="col-12 mb-3 form-check">
+            <!-- <div class="col-12 mb-3 form-check">
                 <input type="checkbox" class="form-check-input" formControlName="agree" id="exampleCheck" [ngClass]="{ 'is-invalid' : submitted && f.agree.errors}" required>
                 <label class="form-check-label" for="exampleCheck">Agree to terms and conditions</label>
 
@@ -103,17 +100,17 @@
                     You must agree before submitting.
                 </div>
 
+            </div> -->
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary mb-3" [disabled]="disable">Save</button><br>
             </div>
 
             <div class="col-12">
-                <button type="submit" class="btn btn-primary mb-3">Submit</button><br>
-            </div>
-
-            <div class="col-12">
-                <button type="button" (click)="onClear()" class="btn btn-warning">Reset</button>
+                <button type="button" (click)="onClear()" class="btn btn-warning mb-3" [disabled]="disable">Cancel</button>
             </div>
 
         </div>
-
     </form>
+    <button type="button" (click)="onEdit()" class="btn btn-primary">Edit</button>
 </div>
